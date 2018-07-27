@@ -10,10 +10,13 @@ class MyDialog(tkSimpleDialog.Dialog):
         self.e2 = Entry(master)
         self.e1.grid(row=0, column=1)
         self.e2.grid(row=1, column=1)
+        self.var = IntVar()
+        self.cb = Checkbutton(master, text="Hardercopy", variable=self.var)
+        self.cb.grid(row=2, columnspan=2, sticky=W)
         return self.e1
 
     def apply(self):
-        self.result = (self.e1.get(), self.e2.get())
+        self.result = (self.e1.get(), self.e2.get(), self.var.get())
 
 
 def showMyDialog(parent):
