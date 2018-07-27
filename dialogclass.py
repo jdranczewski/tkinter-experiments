@@ -1,5 +1,6 @@
 from tkinter import *
 import tkSimpleDialog
+from tkinter import messagebox
 
 
 class MyDialog(tkSimpleDialog.Dialog):
@@ -14,6 +15,15 @@ class MyDialog(tkSimpleDialog.Dialog):
         self.cb = Checkbutton(master, text="Hardercopy", variable=self.var)
         self.cb.grid(row=2, columnspan=2, sticky=W)
         return self.e1
+
+    def validate(self):
+        try:
+            first = int(self.e1.get())
+            second = int(self.e2.get())
+            return 1
+        except ValueError:
+            messagebox.showerror("Error", "Both values need to be integers!")
+            return 0
 
     def apply(self):
         self.result = (self.e1.get(), self.e2.get(), self.var.get())
